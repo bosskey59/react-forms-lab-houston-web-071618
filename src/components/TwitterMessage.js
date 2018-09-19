@@ -1,17 +1,25 @@
 import React from "react";
 
 class TwitterMessage extends React.Component {
-  constructor() {
-    super();
+  state = {
+      wordCount: this.props.maxChars,
+      tweet: ""
+    };
 
-    this.state = {};
+
+  setWordCount= (event) =>{
+    this.setState({
+      wordCount : this.state.wordCount - 1,
+      tweet: event.target.value
+    })
   }
 
   render() {
     return (
       <div>
         <strong>Your message:</strong>
-        <input type="text" />
+        <input onChange={this.setWordCount} value={this.state.tweet}type="text" />
+        <p>{this.state.wordCount}</p>
       </div>
     );
   }
